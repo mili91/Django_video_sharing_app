@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('video/', views.video),
+    path('video/<int:video_id>', views.video),
 ]
