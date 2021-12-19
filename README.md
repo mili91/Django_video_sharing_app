@@ -1,2 +1,2 @@
 # Django_video_sharing_app
-A Django project consisting upload and play video files
+A Django project consisting uploading and playing video files.
