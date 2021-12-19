@@ -1,127 +1,49 @@
 {% extends 'video/base.html' %}
+{% load humanize %}
 
 {% block body %}
     <section class="section">
 
         <div class="container">
+            {% for row in grouped_videos %}
             <div class="columns">
+                
+                {% for video in row %}
                 <div class="column">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                                <img src="{{ video.thumbnail_file.url }}" alt="Placeholder image">
                             </figure>
                         </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
+                                    <a href="{% url 'video' video.id %}" class="title is-4">{{ video.title }}</a>
                                 </div>
                             </div>
                             <div class="content">
-                                11 hours ago
+                                {{ video.date_posted|naturaltime }}
                             </div>
                         </div>
                     </div>
+                </div>
+                {% endfor %}
+                
+                {% if row|length == 1 %}
+                <div class="column">
                 </div>
                 <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                11 hours ago
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                {% endif %}
+
+                {% if row|length == 2 %}
                 <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                11 hours ago
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                {% endif %}
+
             </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                11 hours ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                11 hours ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">Video Title</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                11 hours ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
